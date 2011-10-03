@@ -1,0 +1,10 @@
+out/
+.idea/
+/*.iml
+/*.ipr
+/*.iws
+/db/
+/target/
+/tmp/
+/projectFilesBackup/
+/lib/

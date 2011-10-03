@@ -1,0 +1,9 @@
+<!DOCTYPE html>
+<html
+        xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd"
+        xmlns:p="tapestry:parameter">
+
+Welcome to the broken application ${user.username} <br/> <br/>
+
+<t:eventlink event="logout">Logout</t:eventlink>
+</html>

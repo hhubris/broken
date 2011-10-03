@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html
+      xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd"
+      xmlns:p="tapestry:parameter">
+
+<head>
+    <title>Broken Login</title>
+</head>
+<body>
+    <t:form t:id="loginForm">
+        <t:errors/>
+        <t:label for="username">Username: </t:label>
+        <t:textfield t:id="username" value="username" class="username" />
+        <t:label for="password">Password:</t:label>
+        <t:passwordfield t:id="password" value="password" class="password" />
+        <t:submit />
+    </t:form>
+</body>
+</html>
+
