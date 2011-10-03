@@ -9,7 +9,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <tapestry-release-version>5.3-SNAPSHOT</tapestry-release-version>
+        <tapestry-release-version>5.3-beta-16</tapestry-release-version>
     </properties>
 
     <build>
@@ -58,7 +58,7 @@
 
         <dependency>
             <groupId>org.apache.tapestry</groupId>
-            <artifactId>tapestry-core</artifactId>
+            <artifactId>tapestry-hibernate</artifactId>
             <version>${tapestry-release-version}</version>
         </dependency>
 
@@ -149,6 +149,11 @@
             <snapshots>
                 <enabled>true</enabled>
             </snapshots>
+        </repository>
+
+         <repository>
+            <id>apache-staging</id>
+            <url>https://repository.apache.org/content/groups/staging/</url>
         </repository>
 
     </repositories>
