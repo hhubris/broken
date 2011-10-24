@@ -9,7 +9,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <tapestry-release-version>5.3-beta-16</tapestry-release-version>
+        <tapestry-release-version>5.3-beta-26</tapestry-release-version>
     </properties>
 
     <build>
@@ -63,9 +63,33 @@
         </dependency>
 
         <dependency>
+            <groupId>org.apache.tapestry</groupId>
+            <artifactId>tapestry-upload</artifactId>
+            <version>${tapestry-release-version}</version>
+        </dependency>
+
+        <dependency>
             <groupId>org.got5</groupId>
             <artifactId>tapestry5-jquery</artifactId>
             <version>3.0.0-SNAPSHOT</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.apache.tapestry</groupId>
+                    <artifactId>tapestry-func</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.apache.tapestry</groupId>
+                    <artifactId>tapestry-ioc</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.apache.tapestry</groupId>
+                    <artifactId>tapestry-json</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.apache.tapestry</groupId>
+                    <artifactId>tapestry-upload</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <dependency>
