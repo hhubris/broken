@@ -2,10 +2,10 @@ package com.starpoint.services;
 
 import com.starpoint.security.AuthenticationFilter;
 import org.apache.tapestry5.SymbolConstants;
-import org.apache.tapestry5.ioc.MappedConfiguration;
-import org.apache.tapestry5.ioc.OrderedConfiguration;
-import org.apache.tapestry5.ioc.ServiceBinder;
+import org.apache.tapestry5.hibernate.HibernateTransactionAdvisor;
+import org.apache.tapestry5.ioc.*;
 import org.apache.tapestry5.ioc.annotations.Contribute;
+import org.apache.tapestry5.ioc.annotations.Match;
 import org.apache.tapestry5.services.ComponentRequestFilter;
 import org.apache.tapestry5.services.ComponentRequestHandler;
 
@@ -15,6 +15,17 @@ public class AppModule {
         // Authentication
         binder.bind(Authenticator.class, DummyAuthenticator.class);
     }
+
+    @Match("*Logic")
+    public static void adviseTransactions(HibernateTransactionAdvisor advisor, MethodAdviceReceiver receiver) {
+        advisor.addTransactionCommitAdvice(receiver);
+    }
+
+    /*
+    public static void contributeHibernateEntityPackageManager(Configuration<String> configuration) {
+        configuration.add("com.starpoint.helpdesk.domain");
+    }
+    */
 
     @Contribute(ComponentRequestHandler.class)
     public static void contributeComponentRequestHandler(OrderedConfiguration<ComponentRequestFilter> configuration) {
