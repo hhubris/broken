@@ -8,8 +8,8 @@ import org.apache.tapestry5.hibernate.HibernateCoreModule
 
 /**
  */
-// @SubModule([ TapestryModule, HibernateCoreModule, AppModule ])
-@SubModule([ TapestryModule, AppModule ])
+@SubModule([ TapestryModule, HibernateCoreModule, AppModule ])
+// 1@SubModule([ TapestryModule, AppModule ])
 class UserTest  extends Specification {
 
     def testCreateUserTest() {

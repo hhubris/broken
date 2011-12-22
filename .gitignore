@@ -8,3 +8,5 @@ out/
 /tmp/
 /projectFilesBackup/
 /lib/
+build/
+.gradle/

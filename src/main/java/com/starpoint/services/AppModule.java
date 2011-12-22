@@ -2,12 +2,16 @@ package com.starpoint.services;
 
 import com.starpoint.security.AuthenticationFilter;
 import org.apache.tapestry5.SymbolConstants;
+import org.apache.tapestry5.hibernate.HibernateConfigurer;
+import org.apache.tapestry5.hibernate.HibernateSymbols;
 import org.apache.tapestry5.hibernate.HibernateTransactionAdvisor;
 import org.apache.tapestry5.ioc.*;
+import org.apache.tapestry5.ioc.Configuration;
 import org.apache.tapestry5.ioc.annotations.Contribute;
 import org.apache.tapestry5.ioc.annotations.Match;
 import org.apache.tapestry5.services.ComponentRequestFilter;
 import org.apache.tapestry5.services.ComponentRequestHandler;
+import org.hibernate.cfg.*;
 
 public class AppModule {
 
@@ -21,11 +25,9 @@ public class AppModule {
         advisor.addTransactionCommitAdvice(receiver);
     }
 
-    /*
     public static void contributeHibernateEntityPackageManager(Configuration<String> configuration) {
         configuration.add("com.starpoint.helpdesk.domain");
     }
-    */
 
     @Contribute(ComponentRequestHandler.class)
     public static void contributeComponentRequestHandler(OrderedConfiguration<ComponentRequestFilter> configuration) {
@@ -52,5 +54,21 @@ public class AppModule {
         configuration.add(SymbolConstants.APPLICATION_VERSION, "6.0.0." + System.currentTimeMillis());
 
         configuration.add(SymbolConstants.COMPRESS_WHITESPACE, "false");
+
+        configuration.add(HibernateSymbols.DEFAULT_CONFIGURATION, "false");
+    }
+
+    public static void contributeHibernateSessionSource(OrderedConfiguration<HibernateConfigurer> config) {
+        config.add("H2MemConfig", new HibernateConfigurer() {
+            public void configure(org.hibernate.cfg.Configuration configuration) {
+                configuration.setProperty("hibernate.connection.driver_class", "org.h2.Driver");
+                configuration.setProperty("hibernate.dialect", "org.hibernate.dialect.H2Dialect");
+                configuration.setProperty("hibernate.connection.url", "jdbc:h2:mem:db");
+                configuration.setProperty("hibernate.connection.username", "sa");
+                configuration.setProperty("hibernate.connection.password", "");
+                configuration.setProperty("hibernate.hbm2ddl.auto", "update");
+
+            }
+        });
     }
 }
