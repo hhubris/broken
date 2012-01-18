@@ -1,5 +1,7 @@
 package com.starpoint.services;
 
+import com.starpoint.business.SlowInitSvc;
+import com.starpoint.business.SlowInitSvcImpl;
 import com.starpoint.security.AuthenticationFilter;
 import org.apache.tapestry5.SymbolConstants;
 import org.apache.tapestry5.hibernate.HibernateConfigurer;
@@ -9,6 +11,8 @@ import org.apache.tapestry5.ioc.*;
 import org.apache.tapestry5.ioc.Configuration;
 import org.apache.tapestry5.ioc.annotations.Contribute;
 import org.apache.tapestry5.ioc.annotations.Match;
+import org.apache.tapestry5.ioc.annotations.Startup;
+import org.apache.tapestry5.ioc.services.RegistryShutdownHub;
 import org.apache.tapestry5.services.ComponentRequestFilter;
 import org.apache.tapestry5.services.ComponentRequestHandler;
 import org.hibernate.cfg.*;
@@ -18,6 +22,7 @@ public class AppModule {
     public static void bind(ServiceBinder binder) {
         // Authentication
         binder.bind(Authenticator.class, DummyAuthenticator.class);
+        binder.bind(SlowInitSvc.class, SlowInitSvcImpl.class);
     }
 
     @Match("*Logic")
@@ -57,7 +62,7 @@ public class AppModule {
 
         configuration.add(HibernateSymbols.DEFAULT_CONFIGURATION, "false");
     }
-
+  
     public static void contributeHibernateSessionSource(OrderedConfiguration<HibernateConfigurer> config) {
         config.add("H2MemConfig", new HibernateConfigurer() {
             public void configure(org.hibernate.cfg.Configuration configuration) {
@@ -71,4 +76,15 @@ public class AppModule {
             }
         });
     }
+
+    @Startup
+    public static void registerShutdownListeners(RegistryShutdownHub shutdownHub, final SlowInitSvc svc) {
+        shutdownHub.addRegistryWillShutdownListener( new Runnable() {
+            @Override
+            public void run() {
+                svc.handleShutdown();
+            }
+        });
+    }
+
 }

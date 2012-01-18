@@ -17,6 +17,9 @@ dependencies {
 	compile 'org.got5:tapestry5-jquery:3.0.0'
 	compile 'org.hibernate:hibernate-validator:4.1.0.Final'
 	compile 'org.hibernate:hibernate-commons-annotations:3.2.0.Final'
+	compile 'commons-validator:commons-validator:1.3.1'
+	compile 'commons-beanutils:commons-beanutils:1.8.3'
+	compile 'com.starpoint:querybuilder:1.0.1-SNAPSHOT'
 	compile 'commons-collections:commons-collections:3.2.1'
 	compile 'commons-dbcp:commons-dbcp:1.2.2'
 	compile 'commons-lang:commons-lang:2.6'
@@ -38,6 +41,7 @@ repositories {
     mavenLocal()
 	mavenCentral()
     mavenRepo url: "http://m2repo.spockframework.org/snapshots"
+	mavenRepo url: "http://git.starpoint.com/m2"
 }
 
 war {
@@ -49,4 +53,8 @@ idea {
         jdkName = '1.6'
         languageLevel = '1.6'
     }
+}
+
+task createWrapper(type: Wrapper) {
+    gradleVersion = '1.0-milestone-6'
 }

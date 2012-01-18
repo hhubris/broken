@@ -1,17 +1,18 @@
 package com.starpoint.domain
 
-import com.starpoint.services.AppModule
-import org.apache.tapestry5.ioc.annotations.SubModule
 import spock.lang.Specification
+import org.apache.tapestry5.ioc.annotations.SubModule
 import org.apache.tapestry5.services.TapestryModule
 import org.apache.tapestry5.hibernate.HibernateCoreModule
+import com.starpoint.services.AppModule
 import org.apache.tapestry5.ioc.annotations.Inject
 import com.starpoint.business.SlowInitSvc
 
 /**
  */
 @SubModule([ TapestryModule, HibernateCoreModule, AppModule ])
-class UserTest extends Specification {
+class SlowTest extends Specification {
+
 
     @Inject
     private SlowInitSvc svc;
@@ -24,7 +25,15 @@ class UserTest extends Specification {
         1==1
     }
 
-    def testCreateUserTest() {
+    def testDoNothing2() {
+        when:
+        svc.doNothing()
+
+        then:
+        1==1
+    }
+
+    def testSlowTest() {
         expect:
         name.size() == length
 
@@ -34,4 +43,5 @@ class UserTest extends Specification {
         "Kirk"   | 4
         "Scotty" | 6
     }
+
 }
