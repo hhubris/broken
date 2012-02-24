@@ -1,7 +1,6 @@
 package com.starpoint.services;
 
-import com.starpoint.business.SlowInitSvc;
-import com.starpoint.business.SlowInitSvcImpl;
+import com.starpoint.business.*;
 import com.starpoint.security.AuthenticationFilter;
 import org.apache.tapestry5.SymbolConstants;
 import org.apache.tapestry5.hibernate.HibernateConfigurer;
@@ -23,6 +22,8 @@ public class AppModule {
         // Authentication
         binder.bind(Authenticator.class, DummyAuthenticator.class);
         binder.bind(SlowInitSvc.class, SlowInitSvcImpl.class);
+        binder.bind(BusLogic1.class, BusLogic1Impl.class);
+        binder.bind(BusLogic2.class, BusLogic2Impl.class);
     }
 
     @Match("*Logic")
