@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html
+      xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+      xmlns:p="tapestry:parameter"
+      xmlns:j="tapestry-library:jquery">
+
+<head>
+    <title>tapestry-jquery datepicker format demo</title>
+</head>
+<body>
+
+<t:form>
+    <t:label for="picker">Pick:</t:label>
+    <t:datefield t:id="picker" t:value="date" t:format="MM/dd/yyyy"
+                 t:mixins="jquery/customdatepicker" t:params="params" />
+    <t:submit/>
+
+    <p/>
+
+    You picked: ${formattedDate}
+</t:form>
+</body>
+</html>
+
