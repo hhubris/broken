@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html
+        xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd"
+        xmlns:p="tapestry:parameter"
+>
+<head>
+    <title>Demo of Broken Sorting</title>
+</head>
+<body>
+    <t:form t:id="sortingForm">
+
+    <table style="width:100%; background-color: lightblue;">
+        <tr style="">
+            <td>
+                Search filters would go here
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <t:submit value="Search..." />
+            </td>
+        </tr>
+    </table>
+        <t:jquery.datatable
+                t:id="datatable"
+                t:source="source"
+                t:row="unused"
+                t:mode="true" />
+
+    </t:form>
+</body>
+</html>

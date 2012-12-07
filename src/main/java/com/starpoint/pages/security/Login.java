@@ -41,6 +41,11 @@ public class Login {
 
     void onActivate() {
         username = cookies.readCookieValue("username");
+
+        if (username == null) {
+            username = "someuser@someemail.com";
+            password = "anything";
+        }
     }
 
     void onValidateFromLoginForm() {
