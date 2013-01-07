@@ -25,6 +25,7 @@
                 t:id="datatable"
                 t:source="source"
                 t:row="unused"
+                t:datatablemodel="myModel"
                 t:mode="true" />
     </t:form>
 </body>
