@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html
+        xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd"
+        xmlns:p="tapestry:parameter">
+
+<head>
+    <title>Trim Demo</title>
+</head>
+<body>
+    <t:form method="post">
+        <t:textfield value="demoValue" t:mixins="trim" />
+        <br/>
+        <t:submit />
+    </t:form>
+
+    <br/><br/>
+    Current Value: *${demoValue}*
+</body>
+
+</html>

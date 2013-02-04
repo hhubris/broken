@@ -5,7 +5,7 @@
 
 Welcome to the broken application ${user.username} <br/> <br/>
 
-<t:pagelink page="sortdemo">Sort Demo Page</t:pagelink>
-
-<t:eventlink event="logout">Logout</t:eventlink>
+<t:pagelink page="sortdemo">Sort Demo Page</t:pagelink> <br/>
+<t:pagelink page="trimdemo">Trim Mixin Demo</t:pagelink> <br/>
+<t:eventlink event="logout">Logout</t:eventlink> <br/>
 </html>
