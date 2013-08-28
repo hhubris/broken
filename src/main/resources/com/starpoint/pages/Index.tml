@@ -3,9 +3,15 @@
         xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd"
         xmlns:p="tapestry:parameter">
 
+<head>
+    <title>Test App</title>
+</head>
+<body>
 Welcome to the broken application ${user.username} <br/> <br/>
 
 <t:pagelink page="sortdemo">Sort Demo Page</t:pagelink> <br/>
 <t:pagelink page="trimdemo">Trim Mixin Demo</t:pagelink> <br/>
+<t:pagelink page="ajaxparam">Ajax Param Test</t:pagelink> <br/>
 <t:eventlink event="logout">Logout</t:eventlink> <br/>
+</body>
 </html>

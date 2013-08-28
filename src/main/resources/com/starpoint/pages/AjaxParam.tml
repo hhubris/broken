@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html
+        xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd"
+        xmlns:p="tapestry:parameter">
+<head>
+    <title>Ajax Param</title>
+</head>
+<body>
+    <t:form>
+        <t:textfield value="textfield" /><t:checkbox value="checkbox" />
+        <button type="button" id="button1">Button 1</button>
+    </t:form>
+    <div id="responseDiv"></div>
+</body>
+</html>

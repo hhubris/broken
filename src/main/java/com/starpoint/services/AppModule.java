@@ -21,7 +21,7 @@ public class AppModule {
     public static void bind(ServiceBinder binder) {
         // Authentication
         binder.bind(Authenticator.class, DummyAuthenticator.class);
-        binder.bind(SlowInitSvc.class, SlowInitSvcImpl.class);
+        // binder.bind(SlowInitSvc.class, SlowInitSvcImpl.class);
         binder.bind(BusLogic1.class, BusLogic1Impl.class);
         binder.bind(BusLogic2.class, BusLogic2Impl.class);
     }
@@ -62,6 +62,7 @@ public class AppModule {
         configuration.add(SymbolConstants.COMPRESS_WHITESPACE, "false");
 
         configuration.add(HibernateSymbols.DEFAULT_CONFIGURATION, "false");
+        configuration.add(SymbolConstants.HMAC_PASSPHRASE, "iQhC2JVzgj8uQpKg");
     }
   
     public static void contributeHibernateSessionSource(OrderedConfiguration<HibernateConfigurer> config) {
@@ -78,6 +79,7 @@ public class AppModule {
         });
     }
 
+    /*
     @Startup
     public static void registerShutdownListeners(RegistryShutdownHub shutdownHub, final SlowInitSvc svc) {
         shutdownHub.addRegistryWillShutdownListener( new Runnable() {
@@ -87,5 +89,5 @@ public class AppModule {
             }
         });
     }
-
+    */
 }

@@ -32,17 +32,54 @@ dependencies {
 	compile 'commons-validator:commons-validator:1.3.1'
 	compile 'commons-net:commons-net:3.0.1'
 	compile 'oro:oro:2.0.8'
-    compile 'org.codehaus.groovy:groovy-all:1.8.6'
+    compile 'org.codehaus.groovy:groovy-all:1.8+'
 
-    groovy 'org.codehaus.groovy:groovy-all:1.8.6'
     runtime 'com.h2database:h2:1.3.163'
 
+    def gebVersion = "0.9.0"
+    def seleniumVersion = "2.26.0"
+
     testCompile "org.apache.tapestry:tapestry-test:${tapestryVersion}"
-    testCompile "org.spockframework:spock-core:0.6-groovy-1.8"
-    testCompile "org.spockframework:spock-tapestry:0.6-groovy-1.8"
+    testCompile "org.gebish:geb-spock:$gebVersion"
+    testCompile "org.spockframework:spock-core:0.7-groovy-1.8"
+    testCompile "org.spockframework:spock-tapestry:0.7-groovy-1.8"
+
+    testCompile "org.seleniumhq.selenium:selenium-chrome-driver:$seleniumVersion"
+    testRuntime "org.seleniumhq.selenium:selenium-support:$seleniumVersion"
 
     testRuntime 'javax.servlet:servlet-api:2.5'
 
+}
+
+test {
+    exclude 'com/starpoint/integration/**'
+    systemProperties "geb.build.reportsDir": "$reporting.baseDir/geb"
+}
+
+task integrationTest(type: Test, dependsOn: "test") {
+    exclude ''
+    include 'com/starpoint/integration/**'
+}
+
+jettyRun {
+    daemon = true
+    httpPort = 9191
+}
+
+[jettyRun, jettyStop]*.with {
+    stopKey = '4eU6JMRezHjbLdRh'
+    stopPort = 9192
+}
+
+integrationTest.doFirst {
+    println 'Starting the embedded tomcat server'
+    tasks.jettyRun.execute()
+}
+
+
+integrationTest.doLast {
+    println 'Stopping the embeded jetty server'
+    tasks.jettyStop.execute()
 }
 
 repositories {
@@ -63,5 +100,5 @@ idea {
 }
 
 task createWrapper(type: Wrapper) {
-    gradleVersion = '1.0'
+    gradleVersion = '1.7'
 }
