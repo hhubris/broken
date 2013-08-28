@@ -1,20 +1,18 @@
 package com.starpoint.services;
 
-import com.starpoint.business.*;
+import com.starpoint.business.BusLogic1;
+import com.starpoint.business.BusLogic1Impl;
+import com.starpoint.business.BusLogic2;
+import com.starpoint.business.BusLogic2Impl;
 import com.starpoint.security.AuthenticationFilter;
 import org.apache.tapestry5.SymbolConstants;
-import org.apache.tapestry5.hibernate.HibernateConfigurer;
-import org.apache.tapestry5.hibernate.HibernateSymbols;
-import org.apache.tapestry5.hibernate.HibernateTransactionAdvisor;
-import org.apache.tapestry5.ioc.*;
 import org.apache.tapestry5.ioc.Configuration;
+import org.apache.tapestry5.ioc.MappedConfiguration;
+import org.apache.tapestry5.ioc.OrderedConfiguration;
+import org.apache.tapestry5.ioc.ServiceBinder;
 import org.apache.tapestry5.ioc.annotations.Contribute;
-import org.apache.tapestry5.ioc.annotations.Match;
-import org.apache.tapestry5.ioc.annotations.Startup;
-import org.apache.tapestry5.ioc.services.RegistryShutdownHub;
 import org.apache.tapestry5.services.ComponentRequestFilter;
 import org.apache.tapestry5.services.ComponentRequestHandler;
-import org.hibernate.cfg.*;
 
 public class AppModule {
 
@@ -22,10 +20,11 @@ public class AppModule {
         // Authentication
         binder.bind(Authenticator.class, DummyAuthenticator.class);
         // binder.bind(SlowInitSvc.class, SlowInitSvcImpl.class);
-        binder.bind(BusLogic1.class, BusLogic1Impl.class);
-        binder.bind(BusLogic2.class, BusLogic2Impl.class);
+        // binder.bind(BusLogic1.class, BusLogic1Impl.class);
+        // binder.bind(BusLogic2.class, BusLogic2Impl.class);
     }
 
+    /*
     @Match("*Logic")
     public static void adviseTransactions(HibernateTransactionAdvisor advisor, MethodAdviceReceiver receiver) {
         advisor.addTransactionCommitAdvice(receiver);
@@ -34,6 +33,7 @@ public class AppModule {
     public static void contributeHibernateEntityPackageManager(Configuration<String> configuration) {
         configuration.add("com.starpoint.helpdesk.domain");
     }
+    */
 
     @Contribute(ComponentRequestHandler.class)
     public static void contributeComponentRequestHandler(OrderedConfiguration<ComponentRequestFilter> configuration) {
@@ -61,10 +61,12 @@ public class AppModule {
 
         configuration.add(SymbolConstants.COMPRESS_WHITESPACE, "false");
 
-        configuration.add(HibernateSymbols.DEFAULT_CONFIGURATION, "false");
+        // configuration.add(HibernateSymbols.DEFAULT_CONFIGURATION, "false");
         configuration.add(SymbolConstants.HMAC_PASSPHRASE, "iQhC2JVzgj8uQpKg");
     }
-  
+
+
+    /*
     public static void contributeHibernateSessionSource(OrderedConfiguration<HibernateConfigurer> config) {
         config.add("H2MemConfig", new HibernateConfigurer() {
             public void configure(org.hibernate.cfg.Configuration configuration) {
@@ -77,6 +79,11 @@ public class AppModule {
 
             }
         });
+    }
+    */
+
+    public void contributeIgnoredPathsFilter(Configuration<String> conf) {
+        conf.add("^\\/dwr\\/.*");
     }
 
     /*

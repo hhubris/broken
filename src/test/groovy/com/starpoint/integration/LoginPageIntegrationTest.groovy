@@ -11,7 +11,7 @@ class LoginPageIntegrationTest extends GebSpec {
         go 'http://localhost:9191/broken/security/login'
 
         then:
-        title == 'Broken Login'
+        title == 'Broken1 Login'
     }
 
 }

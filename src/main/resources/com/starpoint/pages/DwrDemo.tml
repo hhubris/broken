@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html
+        xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd"
+        xmlns:p="tapestry:parameter"
+        >
+<head>
+    <title>DWR Test Page</title>
+</head>
+<body>
+<div id="hello">Hi There</div>
+
+<div id="id">id</div>
+<div id="name">name</div>
+<div id="numbers">numbers</div>
+
+<div>
+    <button type="button" id="clickMe">Click Me</button>
+</div>
+</body>
+</html>

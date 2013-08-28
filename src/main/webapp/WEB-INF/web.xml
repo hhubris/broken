@@ -3,7 +3,30 @@
         PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
         "http://java.sun.com/dtd/web-app_2_3.dtd">
 <web-app>
+
+    <servlet>
+        <display-name>DWR Servlet</display-name>
+        <servlet-name>dwr-invoker</servlet-name>
+        <servlet-class>org.directwebremoting.spring.DwrSpringServlet</servlet-class>
+        <init-param>
+            <param-name>debug</param-name>
+            <param-value>true</param-value>
+        </init-param>
+        <init-param>
+            <param-name>classes</param-name>
+            <param-value>
+                com.starpoint.dwr.Broken1Impl
+            </param-value>
+        </init-param>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>dwr-invoker</servlet-name>
+        <url-pattern>/dwr/*</url-pattern>
+    </servlet-mapping>
+
     <display-name>Broken Tapestry 5 Application</display-name>
+
     <context-param>
         <!-- The only significant configuration for Tapestry 5, this informs Tapestry
 of where to look for pages, components and mixins. -->
@@ -12,7 +35,7 @@ of where to look for pages, components and mixins. -->
     </context-param>
     <filter>
         <filter-name>app</filter-name>
-        <filter-class>org.apache.tapestry5.TapestryFilter</filter-class>
+        <filter-class>org.apache.tapestry5.spring.TapestrySpringFilter</filter-class>
     </filter>
     <filter-mapping>
         <filter-name>app</filter-name>

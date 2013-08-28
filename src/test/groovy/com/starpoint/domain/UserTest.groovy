@@ -1,14 +1,13 @@
 package com.starpoint.domain
 
 import com.starpoint.services.AppModule
-import org.apache.tapestry5.hibernate.HibernateCoreModule
 import org.apache.tapestry5.ioc.annotations.SubModule
 import org.apache.tapestry5.services.TapestryModule
 import spock.lang.Specification
 
 /**
  */
-@SubModule([ TapestryModule, HibernateCoreModule, AppModule ])
+@SubModule([ TapestryModule, AppModule ])
 class UserTest extends Specification {
 
 
