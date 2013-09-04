@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html
+        xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd"
+        xmlns:p="tapestry:parameter"
+        >
+<head>
+    DropZone T5 Demo
+</head>
+<body>
+<h3>Simple DropZone Demo</h3>
+
+<t:dropzone domId="dz"/>
+
+</body>
+</html>
