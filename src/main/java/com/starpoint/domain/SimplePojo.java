@@ -71,14 +71,14 @@ public class SimplePojo {
 
     public static SimplePojo build(JSONObject jsonObject) {
         SimplePojo result = new SimplePojo();
-        result.setId((Integer)translateNull(jsonObject.get("id")));
-        result.setA((String)translateNull(jsonObject.get("a")));
-        result.setC((Boolean)translateNull(jsonObject.get("c")));
+        result.setId(Integer.valueOf(translateNull(jsonObject.get("id"))));
+        result.setA(translateNull(jsonObject.get("a")));
+        result.setC(Boolean.valueOf(translateNull(jsonObject.get("c"))));
         return result;
     }
 
-    private static Object translateNull(Object value) {
-        return value == null || value.toString().equals(NULL_VALUE) ? null : value;
+    private static String translateNull(Object value) {
+        return value == null || value.toString().equals(NULL_VALUE) ? null : value.toString();
     }
 
 }

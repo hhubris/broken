@@ -18,6 +18,12 @@
         <t:EditObject domainObj="domainObj" idx="idx"/>
     </t:loop>
 
+    <h3>Group C</h3>
+    <t:loop source="groupB" value="domainObj" index="idx" element="div">
+        Id: <t:textfield t:id="id" value="domainObj.id" validate="maxLength=5" maxlength="5" /> :
+        A: <t:textfield t:id="a" value="domainObj.a" validate="maxlength=10" maxlength="10" />
+    </t:loop>
+
     <t:submit value="Submit"/>
 </t:form>
 </body>
