@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html
+        xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+        >
+<head>
+    <title>Multiple components in a loop</title>
+</head>
+<body>
+<t:form t:id="myForm">
+
+    <h3>Group A</h3>
+    <t:loop source="groupA" value="domainObj" index="idx" element="div">
+        <t:EditObject domainObj="domainObj" idx="idx"/>
+    </t:loop>
+
+    <h3>Group B</h3>
+    <t:loop source="groupB" value="domainObj" index="idx" element="div">
+        <t:EditObject domainObj="domainObj" idx="idx"/>
+    </t:loop>
+
+    <t:submit value="Submit"/>
+</t:form>
+</body>
+</html>

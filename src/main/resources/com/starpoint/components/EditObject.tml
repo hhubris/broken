@@ -1,0 +1,8 @@
+<t:container xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd">
+
+    ${idx} :
+    Id: <t:textfield value="domainObj.id" validate="maxLength=5" maxlength="5" /> :
+    B: <t:textfield value="domainObj.a" validate="maxlength=10" maxlength="10" />
+    <br/>
+
+</t:container>
