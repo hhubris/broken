@@ -6,6 +6,8 @@ import com.starpoint.business.BusLogic2;
 import com.starpoint.business.BusLogic2Impl;
 import com.starpoint.domain.SimplePojo;
 import com.starpoint.security.AuthenticationFilter;
+import com.starpoint.ws.DemoResource;
+import com.starpoint.ws.DemoResourceImpl;
 import org.apache.log4j.Logger;
 import org.apache.tapestry5.SymbolConstants;
 import org.apache.tapestry5.ioc.Configuration;
@@ -13,11 +15,13 @@ import org.apache.tapestry5.ioc.MappedConfiguration;
 import org.apache.tapestry5.ioc.OrderedConfiguration;
 import org.apache.tapestry5.ioc.ServiceBinder;
 import org.apache.tapestry5.ioc.annotations.Contribute;
+import org.apache.tapestry5.ioc.services.ApplicationDefaults;
 import org.apache.tapestry5.ioc.services.Coercion;
 import org.apache.tapestry5.ioc.services.CoercionTuple;
 import org.apache.tapestry5.json.JSONObject;
 import org.apache.tapestry5.services.ComponentRequestFilter;
 import org.apache.tapestry5.services.ComponentRequestHandler;
+import org.tynamo.resteasy.ResteasySymbols;
 
 public class AppModule {
 
@@ -27,6 +31,7 @@ public class AppModule {
         // binder.bind(SlowInitSvc.class, SlowInitSvcImpl.class);
         // binder.bind(BusLogic1.class, BusLogic1Impl.class);
         // binder.bind(BusLogic2.class, BusLogic2Impl.class);
+        binder.bind(DemoResource.class, DemoResourceImpl.class);
     }
 
     /*
@@ -65,9 +70,13 @@ public class AppModule {
         configuration.add(SymbolConstants.APPLICATION_VERSION, "6.0.0." + System.currentTimeMillis());
 
         configuration.add(SymbolConstants.COMPRESS_WHITESPACE, "false");
+        // configuration.add(SymbolConstants.GZIP_COMPRESSION_ENABLED, "false");
 
         // configuration.add(HibernateSymbols.DEFAULT_CONFIGURATION, "false");
         configuration.add(SymbolConstants.HMAC_PASSPHRASE, "iQhC2JVzgj8uQpKg");
+
+
+        configuration.add(ResteasySymbols.MAPPING_PREFIX, "/api");
     }
 
 
@@ -116,6 +125,11 @@ public class AppModule {
 
         configuration.add(new CoercionTuple(java.lang.String.class, SimplePojo.class, toSimplePojo));
 
+    }
+
+    public static void contributeResteasyPackageManager(Configuration<String> configuration)
+    {
+        configuration.add("com.starpoint.ws");
     }
 
 }

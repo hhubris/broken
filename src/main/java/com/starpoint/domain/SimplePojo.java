@@ -2,9 +2,13 @@ package com.starpoint.domain;
 
 import org.apache.tapestry5.json.JSONObject;
 
+import java.io.Serializable;
+
 /**
  */
-public class SimplePojo {
+public class SimplePojo implements Serializable {
+
+
 
     private static String NULL_VALUE = "<**__null__**>";
 

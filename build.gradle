@@ -21,6 +21,9 @@ dependencies {
     compile "org.apache.tapestry:tapestry-spring:${tapestryVersion}"
     compile "org.apache.tapestry:tapestry-upload:${tapestryVersion}"
     compile group: 'org.got5', name: 'tapestry5-jquery', version: '3.3+'
+    compile 'org.tynamo:tapestry-resteasy:0.3.2'
+    compile 'org.jboss.resteasy:resteasy-jackson-provider:3.0.7.Final'
+
     // compile 'uk.org.cezary:t5conduit:0.8-SNAPSHOT'
 	compile 'org.hibernate:hibernate-validator:4.1.0.Final'
 	compile 'org.hibernate:hibernate-commons-annotations:3.2.0.Final'
@@ -90,6 +93,7 @@ repositories {
 	mavenCentral()
 	mavenRepo url: "http://maven.starpoint.com/m2"
     mavenRepo url: "http://nexus.devlab722.net/nexus/content/repositories/releases"
+    mavenRepo url: "https://repository.jboss.org/nexus/content/repositories/releases"
 }
 
 war {
