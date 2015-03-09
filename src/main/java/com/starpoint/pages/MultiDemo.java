@@ -1,15 +1,14 @@
 package com.starpoint.pages;
 
+import com.starpoint.components.EditObject;
 import com.starpoint.domain.SimplePojo;
+import org.apache.tapestry5.PersistenceConstants;
 import org.apache.tapestry5.annotations.InjectComponent;
 import org.apache.tapestry5.annotations.Log;
+import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
-import org.apache.tapestry5.corelib.components.TextField;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.slf4j.Logger;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  */
@@ -18,12 +17,15 @@ public class MultiDemo {
     private Logger logger;
 
     @Property
+    @Persist
     SimplePojo[] groupA;
 
     @Property
+    @Persist
     SimplePojo[] groupB;
 
     @Property
+    @Persist
     SimplePojo[] groupC;
 
     @Property
@@ -32,13 +34,15 @@ public class MultiDemo {
     @Property
     Integer idx;
 
+    @InjectComponent("groupA")
+    private EditObject groupAEditor;
+
     @Log
     void onValidateFromMyForm() {
-        /*
         for (SimplePojo sp : groupA) {
             logger.info("A: " + sp.toString());
         }
-
+        /*
         for (SimplePojo sp : groupB) {
             logger.info("B: " + sp.toString());
         }
@@ -57,9 +61,17 @@ public class MultiDemo {
     }
 
     void createGroups() {
-        groupA = createGroup();
-        groupB = createGroup();
-        groupC = createGroup();
+        if (groupA == null) {
+            groupA = createGroup();
+        }
+
+        if (groupB == null) {
+            groupB = createGroup();
+        }
+
+        if (groupC == null) {
+            groupC = createGroup();
+        }
     }
 
     /*
@@ -78,5 +90,9 @@ public class MultiDemo {
         }
 
         return result;
+    }
+
+    public Boolean getVisible() {
+        return idx % 2 == 0;
     }
 }

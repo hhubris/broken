@@ -16,7 +16,6 @@ public class EditObject {
     @Inject
     private Logger log;
 
-    @Property
     @Parameter(required = true)
     SimplePojo domainObj;
 
@@ -31,9 +30,11 @@ public class EditObject {
     }
 
     public void setVisible(Boolean visible) {
+        log.info("setVisible: " + visible);
         this.visible = visible;
     }
 
+    /*
     void onValidate() {
         log.info("EditObject onValidate: " + domainObj);
     }
@@ -44,5 +45,14 @@ public class EditObject {
 
     void onValidateFromA() {
         log.info("EditObject onValidateFromA: " + domainObj.getA());
+    }
+    */
+
+    public SimplePojo getDomainObj() {
+        return domainObj;
+    }
+
+    public void setDomainObj(SimplePojo domainObj) {
+        this.domainObj = domainObj;
     }
 }

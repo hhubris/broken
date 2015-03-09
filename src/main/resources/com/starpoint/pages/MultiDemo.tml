@@ -9,17 +9,17 @@
 <t:form t:id="myForm">
 
     <h3>Group A</h3>
-    <t:loop source="groupA" value="domainObj" index="idx" element="div">
-        <t:EditObject domainObj="domainObj" idx="idx"/>
+    <t:loop source="groupA" value="domainObj" index="idx" element="div" formState="iteration">
+        <t:EditObject t:id="groupA" domainObj="domainObj" idx="idx" visible="prop:visible" />
     </t:loop>
 
     <h3>Group B</h3>
-    <t:loop source="groupB" value="domainObj" index="idx" element="div">
+    <t:loop source="groupB" value="domainObj" index="idx" element="div" formState="iteration">
         <t:EditObject domainObj="domainObj" idx="idx"/>
     </t:loop>
 
     <h3>Group C</h3>
-    <t:loop source="groupB" value="domainObj" index="idx" element="div">
+    <t:loop source="groupB" value="domainObj" index="idx" element="div" formState="iteration">
         Id: <t:textfield t:id="id" value="domainObj.id" validate="maxLength=5" maxlength="5" /> :
         A: <t:textfield t:id="a" value="domainObj.a" validate="maxlength=10" maxlength="10" />
     </t:loop>

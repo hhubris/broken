@@ -1,7 +1,6 @@
 package com.starpoint.ws;
 
 
-import com.starpoint.BusinessException;
 import com.starpoint.domain.SimplePojo;
 
 import javax.ws.rs.*;
